@@ -2,8 +2,8 @@
 <script src="{{ 'custom-header.js' |  asset_url }}" defer="defer"></script>
 <div id="Header-Banner-{{ section.id }}" class="header-section-container">
   {% comment %} 
-        container for top bar 
-    {% endcomment %}
+            container for top bar 
+      {% endcomment %}
   <div class="chs-top-bar">
     <div class="menu-icon mobile">
       <div class="open-icon">
@@ -55,14 +55,14 @@
   </div>
 
   {% comment %} 
-        container for image and text content, content will be positioned different for mobile and desktop
-        and also body text of content is different on mobile so we need two content container one for mobile
-        and one for desktop. 
-    {% endcomment %}
+            container for image and text content, content will be positioned different for mobile and desktop
+            and also body text of content is different on mobile so we need two content container one for mobile
+            and one for desktop. 
+      {% endcomment %}
   <div class="chs-image-content">
     {% comment %} 
-            content for desktop will button 
-        {% endcomment %}
+                  content for desktop will button 
+            {% endcomment %}
     <div class="chs-content-desktop desktop">
       {% if section.settings.heading != blank %}
         <h3 class="h1 chs-h1">
@@ -77,15 +77,15 @@
       {% if section.settings.button-main != blank %}
         <a href="{{ section.settings.button-main-link }}" class="chs-button-black">
           {{ section.settings.button-main }}
-          {% render 'arrow-icon' %}
+          {% render 'icon-arrow' %}
         </a>
       {% endif %}
 
     </div>
     {% comment %} 
-            content for mobile without button as on mobile the heading and sub heading is above the image
-            and button is present on the image. 
-        {% endcomment %}
+                  content for mobile without button as on mobile the heading and sub heading is above the image
+                  and button is present on the image. 
+            {% endcomment %}
     <div class="chs-content-mobile mobile-flex">
       {% if section.settings.heading != blank %}
         <h3 class="h1 chs-h1">
@@ -117,7 +117,7 @@
         {% if section.settings.button-main != blank %}
           <a href="{{ section.settings.button-main-link }}" class="chs-button-black">
             {{ section.settings.button-main }}
-            {% render 'arrow-icon' %}
+            {% render 'icon-arrow' %}
           </a>
         {% endif %}
       </div>
