@@ -1,0 +1,128 @@
+<div class="image-title">
+  <div class="mc-featured-image">
+    {% if product.featured_image != blank %}
+      {% assign img_height = product.featured_image.width | divided_by: product.featured_image.aspect_ratio | times: 2 %}
+      {{ product.featured_image | image_url: width: product.featured_image.width | image_tag:
+ width: product.featured_image.width,
+ height: img_height,
+ class: 'mc-item-image',
+ fetchpriority: 'auto'
+      }}
+    {% else %}
+      {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </div>
+  <div class="mc-info">
+    <h3 class="h2">
+      {{ product.title }}
+    </h3>
+    {% if product.first_available_variant.compare_at_price > product.first_available_variant.price %}
+      <p>
+        <span class="mc-regular-price">
+          {{ product.first_available_variant.price | money }}
+        </span>
+        <span class="mc-compare-price">
+          {{ product.first_available_variant.compare_at_price | money }}
+        </span>
+      </p>
+    {% else %}
+      <p>
+        <span class="mc-regular-price">
+          {{ product.first_available_variant.price | money }}
+        </span>
+      </p>
+    {% endif %}
+    {% if product.description != blank %}
+      {{ product.description }}
+    {% endif %}
+  </div>
+</div>
+{% assign formId = "product-form-" | append: product.id %}
+<div class="mc-form">
+  {% form "product"
+    ,
+ product
+    ,
+ id: formId
+    ,
+ class: "mc-form"
+    ,
+ novalidate: "novalidate"
+  %}
+
+    {% if product.has_only_default_variant %}
+      <input
+        type="hidden"
+        name="id"
+        value="{{product.selected_or_first_available_variant.id}}">
+    {% else %}
+      <select name="id" style="display:none;">
+        {% for variant in product.variants %}
+          <option
+            {% if variant.id == product.first_available_variant.id %}
+            selected
+            {% endif %}
+            value="{{variant.id}}"
+            data-price="{{variant.price | money }}">
+            {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+      <div class="mc-option">
+        {% for option in product.options_with_values %}
+          {% if option.name == 'color' or option.name == 'Color' %}
+            <div class="mc-product-form-input">
+              {{ option.name }}
+            </div>
+            <div class="mc-color-pills">
+              {% for value in option.values %}
+                <div class="container-{{option.name}}">
+                  <input
+                    type="radio"
+                    class="mc-color"
+                    name="{{option.name}}-{{option.position}}"
+                    value="{{value}}"
+                    {% if value.selected %}
+                    checked
+                    {% endif %} />
+                  <label>
+                    <div class="color-container" style="background-color:{{value}};width:20px;">
+                      <span style="visibility:hidden">.</span>
+                    </div>
+                    <div class="{{option.name}}-{{option.position}}">
+                      {{ value }}
+                    </div>
+                  </label>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="mc-product-form-input">
+              {{ option.name }}
+            </div>
+            <select class="mc-select">
+              {% for value in option.values %}
+                <option
+                  value="{{value}}"
+                  {% if value.selected %}
+                  selected
+                  {% endif %}>{{ value }}</option>
+              {% endfor %}
+            </select>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <button
+      id="ProductSubmitButton-{{product.id}}"
+      type="submit"
+      name="add"
+      class="mc-product-form__submit mc-button"
+      {% if product.selected_or_first_available_variant.available == false or product.selected_or_first_available_variant== nil %}
+      disabled
+      {% endif %}>
+      Add to Cart
+      {% render 'arrow-icon' %}
+    </button>
+  {% endform %}
+</div>

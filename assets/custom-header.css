@@ -1,0 +1,250 @@
+/* styling for top bar with button and text and logo text */
+.chs-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 6%;
+    max-width: 120em;
+    background-color: gainsboro;
+    position: relative;
+}
+
+.chs-logo {
+    font-weight: bolder;
+}
+
+.chs-button-yellow {
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    color: black;
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1;
+    max-width: max-content;
+}
+
+.chs-button-yellow::before {
+    content: '';
+    background-color: black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(-110%, 0%);
+    z-index: -1;
+    transition: transform 0.45s;
+}
+
+.chs-button-yellow:hover::before {
+    transform: translate(0%, 0%);
+}
+
+.chs-button-yellow:hover {
+    color: white;
+}
+
+/* styling for main image and content on the image for desktop */
+.chs-image-content {
+    position: relative;
+}
+
+.chs-content-desktop {
+    position: absolute;
+    max-width: 30%;
+    bottom: 15%;
+    left: 5%;
+}
+
+.main-image {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    height: auto;
+}
+
+.placeholder-svg svg {
+    display: block;
+}
+
+.chs-para {
+    font-size: 2.1rem;
+}
+
+.chs-button-black {
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    z-index: 1;
+    max-width: max-content;
+}
+
+.chs-button-black::before {
+    content: '';
+    background-color: yellow;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(-110%, 0%);
+    z-index: -1;
+    transition: transform 0.45s;
+}
+
+.chs-button-black:hover::before {
+    transform: translate(0%, 0%);
+}
+
+.chs-button-black:hover {
+    color: black;
+}
+
+/* styling for bottom bar with text */
+.chs-bottom-bar {
+    padding: 4px 3rem 4px 3rem;
+    background-color: gainsboro;
+    text-align: center;
+}
+
+.chs-bottom-text {
+    margin: 0px;
+}
+
+/* classes for toggling content on mobile and desktop devices*/
+.mobile {
+    display: none;
+}
+
+.desktop {
+    display: block;
+}
+
+.mobile-flex {
+    display: none;
+}
+
+.desktop-flex {
+    display: flex;
+}
+
+.open-icon:hover,
+.close-icon:hover,
+button:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width:930px) {
+    .chs-content-desktop {
+        max-width: 40%;
+    }
+}
+
+@media screen and (max-width:768px) {
+
+    /* styling for top bar mobile content only */
+    .menu-icon,
+    .chs-sub-heading {
+        flex: 1 1 20%;
+    }
+
+    .chs-logo-wrapper {
+        flex: 1 1 60%;
+        text-align: center;
+    }
+
+    .mobile-menu {
+        background: white;
+        position: absolute;
+        top: 0px;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        max-width: 100%;
+        min-height: fit-content;
+        padding: 2rem;
+        transform: translateY(-110%);
+        transition: transform 0.45s;
+        box-shadow: 0 0px 9px gray;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mobile-menu.active {
+        transform: translateY(0%);
+        top: 70px;
+    }
+
+    .mobile-menu-content .chs-button-yellow {
+        margin: 0 auto;
+    }
+
+    .mobile-menu-content {
+        padding: 3rem;
+        text-align: center;
+    }
+
+    .chs-content-mobile .chs-h1 {
+        margin: 10px 0px;
+    }
+
+    .close-icon {
+        display: none;
+    }
+
+    .open-icon {
+        display: block;
+    }
+
+    /* styling for mobile content and button*/
+    .chs-content-mobile {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        max-width: 80%;
+        margin: 1rem auto;
+        text-align: center;
+    }
+
+    .chs-button-black-wrapper {
+        position: absolute;
+        bottom: 15%;
+        left: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .chs-button-black {
+        margin: 0 auto;
+        padding: 0rem 1rem;
+    }
+
+    /* classes for toggling content on mobile and desktop devices*/
+    .mobile-flex {
+        display: flex;
+    }
+
+    .desktop-flex {
+        display: none;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    .desktop {
+        display: none;
+    }
+}

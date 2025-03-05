@@ -1,0 +1,55 @@
+.cpg-product-container {
+    padding: 2rem 6rem;
+}
+
+.cpg-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.cpg-item {
+    position: relative;
+}
+
+.cpg-item-image {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.circle {
+    position: absolute;
+    background: white;
+    border-radius: 100%;
+    width: 25px;
+    height: 25px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
+
+.circle:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width:768px) {
+    .cpg-product-container {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .cpg-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .circle {
+        width: 15px;
+        height: 15px;
+        font-size: 15px;
+    }
+}

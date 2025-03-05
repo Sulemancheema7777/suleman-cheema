@@ -1,0 +1,211 @@
+{{ 'custom-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-header.js' |  asset_url }}" defer="defer"></script>
+<div id="Header-Banner-{{ section.id }}" class="header-section-container">
+  {% comment %} 
+        container for top bar 
+    {% endcomment %}
+  <div class="chs-top-bar">
+    <div class="menu-icon mobile">
+      <div class="open-icon">
+        {% render 'open-icon' %}
+      </div>
+      <div class="close-icon">
+        {% render 'close-icon' %}
+      </div>
+    </div>
+    <div class="mobile-menu mobile-flex">
+      <div class="mobile-menu-content">
+        {% if section.settings.sub-heading-top != blank %}
+          <div class="chs-sub-heading">
+            <p class="h3 chs-top-text">{{ section.settings.sub-heading-top }}</p>
+          </div>
+        {% endif %}
+        {% if section.settings.button-top != blank %}
+          <div class="chs-button-wrapper">
+            <a href="{{section.settings.button-top-link}}" class="chs-button-yellow">
+              {{ section.settings.button-top }}
+              {% render 'icon-arrow' %}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="chs-logo-wrapper">
+      {% if section.settings.logo-text != blank %}
+        <h1 class="h3 chs-logo">
+          <a style="text-decoration:none" href="/">
+            {{ section.settings.logo-text }}
+          </a>
+        </h1>
+      {% endif %}
+    </div>
+    {% if section.settings.sub-heading-top != blank %}
+      <div class="chs-sub-heading">
+        <p class="h3 chs-top-text desktop">{{ section.settings.sub-heading-top }}</p>
+      </div>
+    {% endif %}
+    {% if section.settings.button-top != blank %}
+      <div class="chs-button-wrapper desktop">
+        <a href="{{section.settings.button-top-link}}" class="chs-button-yellow">
+          {{ section.settings.button-top }}
+          {% render 'icon-arrow' %}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+
+  {% comment %} 
+        container for image and text content, content will be positioned different for mobile and desktop
+        and also body text of content is different on mobile so we need two content container one for mobile
+        and one for desktop. 
+    {% endcomment %}
+  <div class="chs-image-content">
+    {% comment %} 
+            content for desktop will button 
+        {% endcomment %}
+    <div class="chs-content-desktop desktop">
+      {% if section.settings.heading != blank %}
+        <h3 class="h1 chs-h1">
+          {{ section.settings.heading }}
+        </h3>
+      {% endif %}
+      {% if section.settings.sub-heading-desktop != blank %}
+        <p class="chs-para h3">
+          {{ section.settings.sub-heading-desktop }}
+        </p>
+      {% endif %}
+      {% if section.settings.button-main != blank %}
+        <a href="{{ section.settings.button-main-link }}" class="chs-button-black">
+          {{ section.settings.button-main }}
+          {% render 'arrow-icon' %}
+        </a>
+      {% endif %}
+
+    </div>
+    {% comment %} 
+            content for mobile without button as on mobile the heading and sub heading is above the image
+            and button is present on the image. 
+        {% endcomment %}
+    <div class="chs-content-mobile mobile-flex">
+      {% if section.settings.heading != blank %}
+        <h3 class="h1 chs-h1">
+          {{ section.settings.heading }}
+        </h3>
+      {% endif %}
+      {% if section.settings.sub-heading-mobile != blank %}
+        <p class="chs-para h5">
+          {{ section.settings.sub-heading-mobile }}
+        </p>
+      {% endif %}
+    </div>
+    <div class="chs-image">
+      {% if section.settings.image != blank %}
+        {% assign img_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio %}\
+        {{ section.settings.image | image_url: width: section.settings.image.width | image_tag:
+ width: section.settings.image.width,
+ height: img_height,
+ class: 'main-image',
+ fetchpriority: 'high'
+        }}
+      {% else %}
+        <div class="placeholder-svg">
+          {{ 'hero-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {% endif %}
+      {% comment %} this button will only be visible on mobile devices {% endcomment %}
+      <div class="chs-button-black-wrapper mobile">
+        {% if section.settings.button-main != blank %}
+          <a href="{{ section.settings.button-main-link }}" class="chs-button-black">
+            {{ section.settings.button-main }}
+            {% render 'arrow-icon' %}
+          </a>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+  {% comment %} bottom bar content {% endcomment %}
+  <div class="chs-bottom-bar">
+    <p class="h5 chs-bottom-text">
+      {{ section.settings.sub-heading-bottom }}
+    </p>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "t:sections.header-banner.name",
+    "tag": "section",
+    "class": "section",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": "Top Bar"
+      },
+      {
+        "type": "text",
+        "id": "logo-text",
+        "label": "t:sections.header-banner.settings.logo-text.label",
+        "default": "TISSO VISION"
+      },
+      {
+        "type": "text",
+        "id": "sub-heading-top",
+        "label": "t:sections.header-banner.settings.sub-heading-top.label",
+        "default": "Find the ideal gift for your loved ones."
+      },
+      {
+        "type": "text",
+        "id": "button-top",
+        "label": "t:sections.header-banner.settings.button-top.label",
+        "default": "CHOOSE GIFT"
+      }, {
+        "type": "url",
+        "id": "button-top-link",
+        "label": "t:sections.header-banner.settings.button-top-link.label"
+      }, {
+        "type": "image_picker",
+        "id": "image",
+        "label": "t:sections.header-banner.settings.image.label"
+      }, {
+        "type": "text",
+        "id": "heading",
+        "label": "t:sections.header-banner.settings.heading.label",
+        "default": "The Gift Guide"
+      }, {
+        "type": "textarea",
+        "id": "sub-heading-desktop",
+        "label": "t:sections.header-banner.settings.sub-heading-desktop.label",
+        "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+      }, {
+        "type": "textarea",
+        "id": "sub-heading-mobile",
+        "label": "t:sections.header-banner.settings.sub-heading-mobile.label",
+        "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
+      }, {
+        "type": "text",
+        "id": "button-main",
+        "label": "t:sections.header-banner.settings.button-main.label",
+        "default": "SHOP NOW"
+      }, {
+        "type": "url",
+        "id": "button-main-link",
+        "label": "t:sections.header-banner.settings.button-main-link.label"
+      }, {
+        "type": "text",
+        "id": "sub-heading-bottom",
+        "label": "t:sections.header-banner.settings.sub-heading-bottom.label",
+        "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL."
+      }
+    ],
+    "presets": [
+      {
+        "name": "t:sections.header-banner.presets.name"
+      }
+    ]
+  }
+{% endschema %}

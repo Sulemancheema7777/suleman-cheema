@@ -1,0 +1,14 @@
+{{ 'modal-product.css' | asset_url | stylesheet_tag }}
+{{ 'modal-content.css' | asset_url | stylesheet_tag }}
+<div class="my-modal-overlay">
+  <div class="my-modal-container">
+    <div class="modal-close">
+      {% render 'icon-close' %}
+    </div>
+    <div class="my-modal-content">
+      {% comment %} to add content here we will create a new section
+                              modal-content and then using javascript we will pass the product handle to
+                          this section which will give us the product data {% endcomment %}
+    </div>
+  </div>
+</div>

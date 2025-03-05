@@ -1,0 +1,40 @@
+/* overlay that will appear once the modal is active */
+.my-modal-overlay {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 9999;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.my-modal-overlay.active {
+    display: flex;
+}
+
+/* modal container that will hold the content */
+.my-modal-container {
+    background-color: white;
+    padding: 0.5rem 2rem 2rem 2rem;
+    max-width: 400px;
+}
+
+.modal-close {
+    width: 100%;
+    text-align: right;
+}
+
+.modal-close svg {
+    width: 16px;
+    height: 16px;
+}
+
+.modal-close svg:hover {
+    cursor: pointer;
+}
