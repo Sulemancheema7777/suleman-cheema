@@ -26,6 +26,64 @@
     },
     "products_grid_pop_up_tUmidQ": {
       "type": "products-grid-pop-up",
+      "blocks": {
+        "product_b4e4rQ": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "top": 40,
+            "left": 40
+          }
+        },
+        "product_9Ddqmx": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "top": 40,
+            "left": 40
+          }
+        },
+        "product_A3k7Ww": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "top": 40,
+            "left": 40
+          }
+        },
+        "product_wqawKQ": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "top": 40,
+            "left": 40
+          }
+        },
+        "product_TLwMi7": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "top": 40,
+            "left": 40
+          }
+        },
+        "product_3PArkt": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "top": 40,
+            "left": 40
+          }
+        }
+      },
+      "block_order": [
+        "product_b4e4rQ",
+        "product_9Ddqmx",
+        "product_A3k7Ww",
+        "product_wqawKQ",
+        "product_TLwMi7",
+        "product_3PArkt"
+      ],
       "settings": {
         "heading": "TISSO VISION"
       }
